@@ -20,7 +20,7 @@ class Test{
             sum+=arr[i];
         }
         if(sum%2 == 0){
-            boolean status = equal_subset_brute_force(arr,sum/2,n-1,0);
+            boolean status = equal_subset_sum_brute_force(arr,sum/2,n-1,0);
             if(status)
                 System.out.println("Yes");
             else 
@@ -30,17 +30,17 @@ class Test{
             System.out.println("No");
     }
 
-    public static boolean equal_subset_brute_force(int arr[], long sum, int index, int curr_sum){
+    public static boolean equal_subset_sum_brute_force(int arr[], long sum, int index, int curr_sum){
         if(curr_sum == sum)
             return true;
         if(index < 0)
             return false;
         if(curr_sum + arr[index] > sum)
-        equal_subset_brute_force(arr, sum, index-1, curr_sum);
+        equal_subset_sum_brute_force(arr, sum, index-1, curr_sum);
          // case 1 : without including
-        boolean without_including_curr = equal_subset_brute_force(arr, sum, index-1, curr_sum);
+        boolean without_including_curr = equal_subset_sum_brute_force(arr, sum, index-1, curr_sum);
         // case 2 : with including
-        boolean including_curr = equal_subset_brute_force(arr, sum, index-1, curr_sum+arr[index]);
+        boolean including_curr = equal_subset_sum_brute_force(arr, sum, index-1, curr_sum+arr[index]);
         if(without_including_curr || including_curr)
             return true;
         return false;
